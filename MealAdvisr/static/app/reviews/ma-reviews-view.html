@@ -1,0 +1,23 @@
+﻿<div ng-hide="isAdding">
+    <h2>Reviews List <button ng-click="new()">New</button></h2>
+    
+    <h3>These are the dates you went</h3>
+    <ul>
+        <li ng-repeat="item in reviews">
+          {{restaurants[item.r]}} on  {{item.d | date:'dd/MM/yyyy'}}
+        </li>
+    </ul>
+
+</div>
+
+<div ng-show="isAdding">
+    <h2>Add Review</h2>
+    Restaurant: <select ng-model="r">
+        <option value="-1">Select a Restaurant</option>
+        <option ng-repeat="item in restaurants" value="{{$index}}">
+            {{item}}
+        </option>
+    </select>
+    Visit Date: <input type="date" ng-model="d" /><br />
+    <button ng-click="add()">Add</button>
+</div>

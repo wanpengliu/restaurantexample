@@ -1,0 +1,16 @@
+﻿<div ng-hide="isAdding">
+    <h2>Restaurant List <button ng-click="new()">New</button></h2>
+    <h3>You have had <span ng-bind='restaurants.length'></span> meals through us</h3>
+    <ul>
+        <li ng-repeat="r in restaurants">
+            {{$index}}-{{$odd}}-{{$even}}-{{$first}}-{{$last}} {{r}}
+        </li>
+    </ul>
+</div>
+
+<div ng-show="isAdding">
+    <h2>Add Restaurant</h2>
+
+    Restaurant Name: <input type="text" ng-model="restaurantName" /><br />
+    <button ng-click="add()">Add</button>
+</div>
