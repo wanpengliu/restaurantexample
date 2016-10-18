@@ -1,15 +1,10 @@
 ﻿(function () {
     var mod = angular.module('maReviews');
-
     mod.controller('ReviewsController', ReviewsController);
 
-    function ReviewsController($scope, $http, maRestaurantsFactory) {
+    function ReviewsController($scope, maRestaurantsFactory) {
         $scope.isAdding = false;
-
-        $http.get('/reviews').success(function (data) {
-            $scope.reviews = data;
-        });
-
+        $scope.reviews = [{ r: 0, d: '2016-10-17' }, { r: 2, d: '2016-10-09' }];
         $scope.restaurants = maRestaurantsFactory.restaurants;
         $scope.firstName = 'Nigel';
 
