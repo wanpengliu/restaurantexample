@@ -7,8 +7,13 @@
 
     mod.config(function ($routeProvider) {
         console.log('ma-module.js-config');
-        $routeProvider.when('/restaurants', {
+        $routeProvider.when('/restaurants/:id', {
+            controller: 'RestaurantDetailController',
+            controllerAs: 'rc',
+            templateUrl: 'app/restaurants/ma-restaurant-detail-view.html'
+        }).when('/restaurants', {
             controller: 'RestaurantsController',
+            controllerAs: 'rc',
             templateUrl: 'app/restaurants/ma-restaurants-view.html'
         });
     });
