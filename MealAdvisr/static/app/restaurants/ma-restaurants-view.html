@@ -1,16 +1,27 @@
-﻿<div ng-hide="isAdding">
-    <h2>Restaurant List <button ng-click="new()">New</button></h2>
-    <h3>You have had <span ng-bind='restaurants.length'></span> meals through us</h3>
+﻿<div ng-hide="false">
+    <div ng-show="errorMessage">{{rc.errorMessage | json}}</div>
+    <h2>Restaurant List <button ng-click="rc.new()">New</button></h2>
+    <h3>You have had <span ng-bind='rc.restaurants.length'></span> meals through us</h3>
     <ul>
-        <li ng-repeat="r in restaurants">
-            {{$index}}-{{$odd}}-{{$even}}-{{$first}}-{{$last}} {{r}}
+        <li ng-repeat="r in rc.restaurants">
+            <a href="#/restaurants/{{r.id}}">{{r.id}}</a> {{r.name}} <a href="" ng-click="rc.remove(r.id)">Remove</a>
         </li>
     </ul>
 </div>
 
-<div ng-show="isAdding">
-    <h2>Add Restaurant</h2>
-
-    Restaurant Name: <input type="text" ng-model="restaurantName" /><br />
-    <button ng-click="add()">Add</button>
+<div ng-show="true">
+    <form name="rc.editForm">
+        <h2>Add Restaurant</h2>
+        Name: <input required pattern="^([A-Z][a-z]+ )*[A-Z][a-z]+" name="name" type="text" ng-model="rc.name" /><br />
+        <div ng-show="rc.editForm.name.$invalid && rc.editForm.name.$dirty">
+            Name is invalid:
+            <ul>
+                <li ng-show="rc.editForm.name.$error.required">It is required</li>
+                <li ng-show="rc.editForm.name.$error.pattern">It must be like The Ledbury or Quo Vadis</li>
+            </ul>
+        </div>
+        Address: <input required name="address" type="text" ng-model="rc.address" /><br />
+        <div ng-show="rc.editForm.address.$invalid && rc.editForm.address.$dirty">Name is required</div>
+        <button ng-disabled="rc.editForm.$invalid" ng-click="rc.add()">Add</button>
+    </form>
 </div>

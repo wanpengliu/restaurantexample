@@ -4,14 +4,32 @@
     <meta charset="utf-8">
     <title>Meal Advisr for {{firstName}}</title>
     <base href="/" />
+    <style>
+        input.ng-dirty.ng-invalid {
+            background-color: lightpink;
+        }
+
+        input.ng-dirty.ng-valid {
+            background-color: lightgreen;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Meal Advisr for {{firstName}}</h1>
+    <input ng-model="someFormat" />
+    <ma-welcome-message time-period="date" time-format="someFormat"></ma-welcome-message>
+
+    <ma-welcome-message time-period="time" time-format="'hh:mm:ss'"></ma-welcome-message>
+
     <a href="#/restaurants">Restaurants</a> | 
+    <a href="#/demo">Demo</a> | 
     <a href="#/reviews">Reviews</a>
 
     <div ng-view></div>
 
+
+
+    <script src="app/noAngularAtAll.js"></script>
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
 
@@ -19,10 +37,15 @@
 
     <script src="app/restaurants/ma-module.js"></script>
     <script src="app/reviews/ma-module.js"></script>
+    <script src="app/demo/ma-module.js"></script>
+    <script src="app/common/ma-module.js"></script>
 
     <script src="app/restaurants/maRestaurantsFactory.js"></script>
     <script src="app/restaurants/RestaurantsController.js"></script>
+    <script src="app/restaurants/RestaurantDetailController.js"></script>
     <script src="app/reviews/ReviewsController.js"></script>
     <script src="app/reviews/maReviewsService.js"></script>
+    <script src="app/demo/DemoController.js"></script>
+    <script src="app/common/maWelcomeMessage.js"></script>
 </body>
 </html>

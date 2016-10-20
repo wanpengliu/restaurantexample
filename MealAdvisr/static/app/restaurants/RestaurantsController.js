@@ -4,26 +4,51 @@
     var mod = angular.module('maRestaurants');
     mod.controller('RestaurantsController', RestaurantsController);
 
-    function RestaurantsController($scope, maRestaurantsFactory) {
-
+    function RestaurantsController(maRestaurantsFactory) {
+        var that = this;
         console.log('RestaurantsController.js-controller');
-        $scope.isAdding = false;
+        that.isAdding = false;
         
 
-        maRestaurantsFactory.getData().then(display)
+        maRestaurantsFactory.getData().then(display, displayError);
 
-        $scope.add = function () {
-            $scope.restaurants.push($scope.restaurantName);
-            $scope.restaurantName = '';
-            $scope.isAdding = false;
+        that.add = function () {
+            var newRestaurant = {
+                id: -1,
+                name: that.name,
+                address: that.address
+            };
+            maRestaurantsFactory.addData(newRestaurant)
+                .then(maRestaurantsFactory.getData)
+                .then(display)
+                .then(clearForm);
         }
 
-        $scope.new = function () {
-            $scope.isAdding = true;
+        that.remove = function (id) {
+            maRestaurantsFactory.removeData(id)
+                .then(maRestaurantsFactory.getData)
+                .then(display)
+                .then(clearForm);
+        }
+
+        that.new = function () {
+            that.isAdding = true;
         }
 
         function display(response) {
-            $scope.restaurants = response.data;
+            that.restaurants = response.data;
+        }
+
+        function displayError(err) {
+            that.errorMessage = err;
+        }
+
+        function clearForm() {
+            that.editForm.$setPristine();
+            that.name = '';
+            that.address = '';
+            that.isAdding = false;
+            that.errorMessage = '';
         }
     }
 })();
