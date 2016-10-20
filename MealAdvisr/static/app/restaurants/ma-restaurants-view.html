@@ -4,7 +4,9 @@
     <h3>You have had <span ng-bind='rc.restaurants.length'></span> meals through us</h3>
     <ul>
         <li ng-repeat="r in rc.restaurants">
-            <a href="#/restaurants/{{r.id}}">{{r.id}}</a> {{r.name}} <a href="" ng-click="rc.remove(r.id)">Remove</a>
+            <!--<ma-restaurant-item restaurant="r" remove-item="rc.remove(r._id)"></ma-restaurant-item>-->
+            <ma-restaurant-item-component restaurant="r" index="{{$index+1}}" remove-item="rc.remove(r._id)"></ma-restaurant-item-component>
+            <!--<a href="#/restaurants/{{r.id}}">{{r.id}}</a> {{r.name}} <a href="" ng-click="rc.remove(r.id)">Remove</a>-->
         </li>
     </ul>
 </div>

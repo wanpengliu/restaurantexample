@@ -16,8 +16,6 @@
     </style>
 </head>
 <body>
-    <input ng-model="someFormat" />
-    <ma-welcome-message time-period="date" time-format="someFormat"></ma-welcome-message>
 
     <ma-welcome-message time-period="time" time-format="'hh:mm:ss'"></ma-welcome-message>
 
@@ -43,9 +41,14 @@
     <script src="app/restaurants/maRestaurantsFactory.js"></script>
     <script src="app/restaurants/RestaurantsController.js"></script>
     <script src="app/restaurants/RestaurantDetailController.js"></script>
+    <script src="app/restaurants/maRestaurantItem.js"></script>
+    <script src="app/restaurants/maRestaurantItemComponent.js"></script>
+    
     <script src="app/reviews/ReviewsController.js"></script>
     <script src="app/reviews/maReviewsService.js"></script>
+
     <script src="app/demo/DemoController.js"></script>
+
     <script src="app/common/maWelcomeMessage.js"></script>
 </body>
 </html>

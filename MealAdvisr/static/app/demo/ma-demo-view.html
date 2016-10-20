@@ -1,0 +1,23 @@
+﻿<div ng-controller="DemoController">
+    Result: {{dc_result.firstName}}
+    <button ng-click="someClick()">Click Me</button>
+
+    <div ng-controller="ChildController">
+        <input ng-change="inputChange()" ng-model="input" /><br />
+        Result: {{cc_result | json}}
+
+        <div ng-controller="GrandChildController">
+            Result: {{gcc_result.firstName}}
+        </div>
+
+
+        <div ng-controller="GrandChildController">
+            Result: {{gcc_result.firstName}}
+            <button ng-click="otherClick()">Click Me</button>
+        </div>
+
+    </div>
+
+
+
+</div>
